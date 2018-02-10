@@ -5,7 +5,12 @@ const User = require('../models/User')
 
 //username, password
 router.post('/login', async (req, res) => {
-  const user = await User.auth(res.body.username, res.body.password)
+  const token = await User.auth(req.body.username, req.body.password)
+
+  if(!token){
+    return res.sendStatus(401)
+  }
+  res.send(token)
 })
 
 // app.get('/users', async (req, res) => {

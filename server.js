@@ -9,7 +9,7 @@ const usersRoute = require('./routes/users')
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 app.use('/', postsRoute)
-app.use('/', usersRoute)
+app.use('/users', usersRoute)
 app.listen(3000, () => {
   console.log('started')
 })

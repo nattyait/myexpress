@@ -40,4 +40,4 @@ const User = {
 module.exports = User
 
 //console.log(await User.auth('test1', 'password'))
-User.auth('user1', 'password').then(console.log)
+// User.auth('user1', 'password').then(console.log)
