@@ -1,7 +1,8 @@
 const _ = require('lodash')
 const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
 
-const SECRET = 'abc'
+const SECRET = 'QWERTY'
 
 const db = require('../db')
 
@@ -16,7 +17,8 @@ const User = {
   //check username, password
   //if valid, return token
   auth: async (username, password) => {
-    const users = await db('users').where({ username })
+    const hashed = crypto.createHmac('sha256', SECRET).update(password).digest('hex')
+    const users = await db('users').where({ username, password: hashed })
     const user = users[0]
 
     if(!user) {
