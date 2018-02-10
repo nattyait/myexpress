@@ -4,15 +4,12 @@ const bodyParser = require('body-parser')
 const app = express()
 
 const postsRoute = require('./routes/posts')
+const usersRoute = require('./routes/users')
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
 app.use('/', postsRoute)
-
-// app.get('/users', async (req, res) => {
-//   const users = await User.list()
-//   res.json(users)
-// })
+app.use('/', usersRoute)
 app.listen(3000, () => {
   console.log('started')
 })
