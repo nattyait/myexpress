@@ -9,6 +9,15 @@ const Post = {
   list: async () => {
     const posts = await db('posts').select()
     return posts
+  },
+
+  create: async (userId, title, content) => {
+    const ids = await db('posts').insert({
+      userId, title, content
+    })
+
+    const post = await Post.get(ids[0])
+    return post
   }
 }
 
@@ -19,3 +28,7 @@ const Post = {
 // f()
 
 module.exports = Post
+
+Post.create(1, 'title', 'content').then( x=> {
+  console.log(x)
+})

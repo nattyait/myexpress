@@ -30,6 +30,11 @@ app.get('/users', async (req, res) => {
   res.json(users)
 })
 
+//create post
+app.post('posts', async (req, res) => {
+  
+})
+
 app.listen(3000, () => {
   console.log('started')
 })
