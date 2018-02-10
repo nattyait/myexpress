@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const app = express()
 
 const Post = require('./models/Post')
+const User = require('./models/User')
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
@@ -18,7 +19,15 @@ app.get('/posts/:id', async (req, res) => {
   if (!post) {
     return res.sendStatus(404)
   }
+
+  post.user = await User.get(post.userId)
+
   res.json(post)
+})
+
+app.get('/users', async (req, res) => {
+  const users = await User.list()
+  res.json(users)
 })
 
 app.listen(3000, () => {
