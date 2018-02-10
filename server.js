@@ -31,8 +31,9 @@ app.get('/users', async (req, res) => {
 })
 
 //create post
-app.post('posts', async (req, res) => {
-  
+app.post('/posts', async (req, res) => {
+  const post = await Post.create(1, req.body.title, req.body.content)
+  res.json(post)
 })
 
 app.listen(3000, () => {
