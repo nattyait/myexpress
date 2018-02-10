@@ -28,6 +28,18 @@ const User = {
     return jwt.sign({
       userId: user.id
     }, SECRET)
+  },
+  getByToken: async (token) => {
+    try{
+      const payload = jwt.verify(token, SECRET)
+      const user = await User.get(payload.userId)
+      return user
+    } catch (err) {
+      if (err.name === "JsonWebTokenError") {
+        return null
+      }
+      throw err
+    }
   }
 }
 
@@ -41,3 +53,4 @@ module.exports = User
 
 //console.log(await User.auth('test1', 'password'))
 // User.auth('user1', 'password').then(console.log)
+// User.getByToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTUxODI0NTY5OH0.yRWgVqsYH8KJDUbKnWofrhbVo44pumHQKlb4355LMnk').then(console.log)

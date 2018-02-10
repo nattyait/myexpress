@@ -29,6 +29,6 @@ const Post = {
 
 module.exports = Post
 
-Post.create(1, 'title', 'content').then( x=> {
-  console.log(x)
-})
+// Post.create(1, 'title', 'content').then( x=> {
+//   console.log(x)
+// })
